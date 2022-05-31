@@ -1,4 +1,5 @@
 {
+  "name": "deadleader",
   "private": true,
   "scripts": {
     "dev": "next",
