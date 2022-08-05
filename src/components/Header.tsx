@@ -27,7 +27,7 @@ export function Header() {
               <Text color="gray.300" fontSize="small">luannn@gmail.com</Text>
             </Box>
 
-            <Avatar size="md" name="Luan Oliveira" src="https://github.com/luanelioliveira.png"></Avatar>
+            <Avatar size="md" name="Luan Oliveira" src="https://github.com/luanelioliveira.png" />
           </Flex>
         </Flex>
     </Flex>
