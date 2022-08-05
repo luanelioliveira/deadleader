@@ -19,7 +19,7 @@ export function Pagination({ itemsPerPage, totalItems, pageCurrent }: Pagination
   }
 
   return (
-    <Stack direction="row" mt={8} justify="space-between" align="center" spacing={6}>
+    <Stack direction={["column", "row"]} mt={8} spacing={6} justify="space-between" align="center" >
       <Box>
         <strong>{pageStart}</strong> - <strong>{pageEnd}</strong> of <strong>{totalItems}</strong>
       </Box>
