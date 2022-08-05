@@ -64,8 +64,9 @@ export default function Dashboard() {
       <Header />
       
       <Flex w="100%" my={6} maxWidth={1480} mx="auto" px={6}>
-        <Sidebar/>
-
+        
+      <Sidebar/>
+      
         <SimpleGrid flex={1} gap={4} minChildWidth={320} alignItems="flex-start">
           <Box p={8} bg="gray.800" borderRadius={8} pb={4}>
             <Text fontSize="lg" mb={4}> Subscribers of the Week</Text>
