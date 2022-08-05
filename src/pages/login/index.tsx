@@ -1,5 +1,7 @@
-import { Button, Flex, Stack } from "@chakra-ui/react";
+import { Button, Flex, Icon, Stack } from "@chakra-ui/react";
 import { Input } from "../../components/Form/Input";
+
+import { RiLogoutBoxRLine } from 'react-icons/ri';
 
 export default function Login() {
   return (
@@ -9,7 +11,9 @@ export default function Login() {
           <Input name="email" type="email" label="Email" />
           <Input name="password" type="password" label="Password" />
         </Stack>
-        <Button type="submit" mt={6} colorScheme="pink">Sign In</Button>
+        <Button as="a" colorScheme="pink" rightIcon={<Icon as={RiLogoutBoxRLine} fontSize="16"></Icon>}>
+          Login
+        </Button>
       </Flex>
     </Flex>
   )
