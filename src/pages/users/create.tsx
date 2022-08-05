@@ -23,9 +23,13 @@ export default function CreateUser() {
             <SimpleGrid minChildWidth="240px" spacing={8} w="100%">
               <Input name="name" label="First Name" />
               <Input name="name" label="Last Name" />
-              <Input name="email" type="email" label="Email"  />
+              
             </SimpleGrid>
 
+            <SimpleGrid minChildWidth="240px" spacing={8} w="100%">
+              <Input name="email" type="email" label="Email"  />
+            </SimpleGrid>
+            
             <SimpleGrid minChildWidth="240px" spacing={8} w="100%">
               <Input name="password" type="password" label="Password" />
               <Input name="passwordConfirmation" type="password" label="Password Confirmation" />
