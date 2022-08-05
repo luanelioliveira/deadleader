@@ -2,8 +2,8 @@ import { Flex, SimpleGrid, theme } from "@chakra-ui/react";
 
 import { Header } from "../../components/Header";
 import { Sidebar } from "../../components/Sidebar";
-import { SubscribersPerWeek } from "./SubscribersPerWeek";
-import { OpenningRate } from "./OpenningRate";
+import { SubscribersPerWeek } from "../../components/Chart/SubscribersPerWeek";
+import { OpenningRate } from "../../components/Chart/OpenningRate";
 
 export default function Dashboard() {
   return (

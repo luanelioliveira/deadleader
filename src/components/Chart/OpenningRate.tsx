@@ -1,4 +1,4 @@
-import { ChartDateTime } from "../../components/Chart/ChartDateTime";
+import { ChartDateTime } from "./ChartDateTime";
 
 export function OpenningRate() {
 
