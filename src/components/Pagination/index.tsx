@@ -12,7 +12,7 @@ export function Pagination({ itemsPerPage, totalItems, pageCurrent }: Pagination
 
   const pageStart = (pageCurrent - 1) * itemsPerPage
 
-  let pageEnd = (pageStart + itemsPerPage)
+  let pageEnd = pageStart + itemsPerPage
 
   if (pageEnd > totalItems) {
     pageEnd = totalItems
