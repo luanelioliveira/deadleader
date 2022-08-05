@@ -1,17 +1,36 @@
-import { Button, Flex, Stack } from "@chakra-ui/react";
-import { Input } from "../components/Form/Input";
+import { Box, Button, Flex, Icon, Text, useBreakpointValue, VStack } from "@chakra-ui/react"
+import Link from "next/link";
+import { Logo } from "../components/Header/Logo";
+
+import { RiLogoutBoxRLine } from 'react-icons/ri';
+
 
 export default function Home() {
+  const isWideVersion = useBreakpointValue({
+    base: false,
+    lg: true,
+  })
+
   return (
-    <Flex w={"100vw"} h={"100vh"} align="center" justify="center">
-      <Flex as="form" w="100%" maxWidth={360} bg="gray.800" p={8} borderRadius={8} flexDirection="column">
-        <Stack spacing={4}>
-          <Input name="email" type="email" label="Email" />
-          <Input name="password" type="password" label="Password" />
-        </Stack>
-        <Button type="submit" mt={6} colorScheme="pink">Sign In</Button>
+    <Flex direction="column" h="100vh">
+      <Flex as="header" w="100%" maxWidth={1480} h={20} mx="auto" mt={2} px={[6, 8]} align="center">
+        <Logo />
+        <Flex align="center" ml="auto">
+          <Link href="/login">
+            <Button as="a" colorScheme="pink" rightIcon={<Icon as={RiLogoutBoxRLine} fontSize="16"></Icon>}>
+              Login
+            </Button>
+          </Link>
+        </Flex>  
+      </Flex>
+
+      <Flex w="100%" minHeight={400} maxWidth={1480}  mx="auto" my={6} p={[6, 8]} pb={4}>
+          <Flex w="100%" bg="gray.800" borderRadius={8} align="center" justify="center">
+            <Text fontSize={["2xl", "3xl", "7xl"]} fontWeight="bold" letterSpacing="tight">
+              Em Breve Novidades!
+            </Text>
+          </Flex>
       </Flex>
     </Flex>
-
   )
 }
