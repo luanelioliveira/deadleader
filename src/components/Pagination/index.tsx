@@ -8,7 +8,7 @@ interface PaginationProps {
 }
 
 export function Pagination({ itemsPerPage, totalItems, pageCurrent }: PaginationProps) {
-  const totalPages = Math.round(totalItems / itemsPerPage)
+  const totalPages = Math.ceil(totalItems / itemsPerPage)
 
   const pageStart = (pageCurrent - 1) * itemsPerPage
 
