@@ -55,7 +55,7 @@ export default function UserList() {
             </Tbody>
           </Table>
 
-          <Pagination />
+          <Pagination itemsPerPage={10} totalItems={45} pageCurrent={5} />
         </Box>
       </Flex>
     </Box>
