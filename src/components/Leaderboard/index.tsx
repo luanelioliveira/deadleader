@@ -103,7 +103,7 @@ export function Leaderboard() {
         </VStack>
       </Box>
 
-      <Box px={2} bg="gray.800" borderRadius={8}>
+      <Box px={2} pt={2} bg="gray.800" borderRadius={8}>
         <Table colorScheme="whiteAlpha">
           <Thead>
             <Tr>
