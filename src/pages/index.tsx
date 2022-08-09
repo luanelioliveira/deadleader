@@ -1,4 +1,4 @@
-import { Box, Button, Flex } from "@chakra-ui/react";
+import { Box, Button, Flex, Link, Text } from "@chakra-ui/react";
 
 import { Logo } from "../components/Header/Logo";
 
@@ -17,6 +17,18 @@ export default function Home() {
       </Flex>
 
       <Leaderboard />
+
+      <Flex align="center" justify="center" mb={8}>
+        <footer>
+          <Text fontWeight="light" color="gray.700">
+            Developed by{" "}
+            <Link href="https://www.linkedin.com/in/luanoliveira">
+              Luan Oliveira
+            </Link>{" "}
+            @ 2022
+          </Text>
+        </footer>
+      </Flex>
     </Box>
   );
 }
