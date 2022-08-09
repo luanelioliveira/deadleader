@@ -10,11 +10,14 @@ export default function Home() {
       <Flex as="header" h={20} align="center">
         <Logo />
         <Flex align="center" ml="auto">
-          <Link href="https://www.linkedin.com/in/luanoliveira">
-            <Button as="a" size="sm" colorScheme="pink">
-              Contact Us
-            </Button>
-          </Link>
+          <Button
+            as="a"
+            size="sm"
+            colorScheme="pink"
+            href="https://www.linkedin.com/in/luanoliveira"
+          >
+            Contact Us
+          </Button>
         </Flex>
       </Flex>
 
@@ -24,9 +27,9 @@ export default function Home() {
         <footer>
           <Text fontWeight="light" color="gray.700">
             Developed by{" "}
-            <Link href="https://www.linkedin.com/in/luanoliveira">
+            <Link href="https://www.linkedin.com/in/luanoliveira" isExternal>
               Luan Oliveira
-            </Link>{" "}
+            </Link>
             @ 2022
           </Text>
         </footer>

@@ -20,26 +20,78 @@ import team12Logo from "../../assets/team12.jpeg";
 
 import { event1 } from "../../data/leaderboard-event1";
 
+interface Rank {
+  event: string;
+  alias: string;
+  name: string;
+  points: number;
+  category: string;
+  ignore: boolean;
+}
+
+const events = [
+  { name: "Overall", value: "overall" },
+  { name: "Event 1 (08/08)", value: "event1" },
+];
+
 export function Leaderboard() {
   const [category, setCategory] = useState("rx");
   const [event, setEvent] = useState("overall");
 
-  let leaderboard = [];
+  let leaderboard = [] as Rank[];
 
   if (event === "event1") leaderboard = [...event1];
+
   if (event === "overall") leaderboard = [...event1];
 
-  const leaderboardFiltred = leaderboard
-    .filter((player) => player.category === category)
-    .map((player) => {
-      return {
-        ...player,
-        rank: player.points * player.factor,
-      };
-    })
-    .sort((a, b) => (a.rank < b.rank ? -1 : 1));
+  const leaderboardFiltred = filterByCategory(leaderboard, category);
 
-  function formatPosition(position) {
+  const leaderBoardCalculated = calculatePoints(leaderboardFiltred, event);
+
+  const leaderBoardOrdered = orderByPoints(leaderBoardCalculated);
+
+  function filterByCategory(leaderboard: Rank[], category: string) {
+    const leaderboardFiltred = leaderboard
+      .filter((player) => player.category === category)
+      .map((player) => {
+        return {
+          ...player,
+          rank: player.points,
+        };
+      });
+
+    return leaderboardFiltred;
+  }
+
+  function orderByPoints(leaderboard: Rank[]) {
+    const leaderBoardOrdered = leaderboard.sort((a, b) =>
+      a.points < b.points ? -1 : 1
+    );
+
+    return leaderBoardOrdered;
+  }
+
+  function calculatePoints(leaderboard: Rank[], event: string) {
+    if (event !== "overall") {
+      return leaderboard;
+    }
+
+    const leaderBoardCalculated = Object.values(
+      leaderboard.reduce((prev, next) => {
+        const key = next.name + "-" + next.alias;
+        if (!prev[key]) {
+          prev[key] = next;
+        } else {
+          prev[key].points += next.points;
+        }
+        return prev;
+      }, [])
+    ) as Rank[];
+
+    return leaderBoardCalculated;
+  }
+
+  function formatPosition(position: number) {
     if (position === 0) return "🥇";
     if (position === 1) return "🥈";
     if (position === 2) return "🥉";
@@ -91,8 +143,11 @@ export function Leaderboard() {
                 setEvent(e.target.value);
               }}
             >
-              <option value="overall">Overall</option>
-              <option value="event1">Event 1 (08/08)</option>
+              {events.map((event) => (
+                <option key={event.value} value={event.value}>
+                  {event.name}
+                </option>
+              ))}
             </Select>
           </Box>
         </VStack>
@@ -112,7 +167,7 @@ export function Leaderboard() {
             </Tr>
           </Thead>
           <Tbody>
-            {leaderboardFiltred.map((player, position) => {
+            {leaderBoardOrdered.map((player, position) => {
               return (
                 <Tr key={player.name + player.alias}>
                   <Td textAlign={"center"} px={4}>
