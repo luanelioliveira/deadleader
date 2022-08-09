@@ -29,7 +29,7 @@ export default function Home() {
             Developed by{" "}
             <Link href="https://www.linkedin.com/in/luanoliveira" isExternal>
               Luan Oliveira
-            </Link>
+            </Link>{" "}
             @ 2022
           </Text>
         </footer>
