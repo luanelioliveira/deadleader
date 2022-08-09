@@ -140,7 +140,12 @@ export function Leaderboard() {
                 <Tr>
                   <Td px={4}>{formatPosition(position)}</Td>
                   <Td px={4} w="90%">
-                    {formatName(player.name, player.alias)}
+                    <Box>
+                      <Text fontWeight="bold">{player.alias}</Text>
+                      <Text fontSize="small" color="gray.300">
+                        {player.name}
+                      </Text>
+                    </Box>
                   </Td>
                   <Td px={4} isNumeric>
                     {player.points}
