@@ -127,7 +127,9 @@ export function Leaderboard() {
         <Table colorScheme="whiteAlpha">
           <Thead>
             <Tr>
-              <Th px={5}>#</Th>
+              <Th textAlign={"center"} px={4}>
+                #
+              </Th>
               <Th px={4} w="90%">
                 Athlete
               </Th>
@@ -138,7 +140,9 @@ export function Leaderboard() {
             {playersFiltred.map((player, position) => {
               return (
                 <Tr>
-                  <Td px={4}>{formatPosition(position)}</Td>
+                  <Td textAlign={"center"} px={4}>
+                    {formatPosition(position)}
+                  </Td>
                   <Td px={4} w="90%">
                     <Box>
                       <Text fontWeight="bold">{player.alias}</Text>
