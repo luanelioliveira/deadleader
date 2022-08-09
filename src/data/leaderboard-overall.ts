@@ -1,4 +1,4 @@
-export const players = [
+export const overall = [
   { alias: "Anão", name: "Diego", points: 1, factor: 10, category: "rx" },
   { alias: "AeroXimiti", name: "Guilherme", points: 1, factor: 11, category: "rx" },
   { alias: "Coach", name: "Luiz", points: 2, factor: 20, category: "rx" },

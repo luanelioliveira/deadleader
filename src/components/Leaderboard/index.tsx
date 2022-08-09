@@ -5,6 +5,7 @@ import {
   Box,
   Button,
   Flex,
+  Select,
   Stack,
   Table,
   Tbody,
@@ -19,17 +20,21 @@ import {
 
 import team12Logo from "../../assets/team12.jpeg";
 
-import { players } from "../../data/leaderboard";
+import { overall } from "../../data/leaderboard-overall";
+import { event1 } from "../../data/leaderboard-event1";
 
 export function Leaderboard() {
-  const isWideVersion = useBreakpointValue({
-    base: false,
-    lg: true,
-  });
-
   const [category, setCategory] = useState("rx");
+  const [event, setEvent] = useState("overall");
 
-  const playersFiltred = players
+  console.log(event);
+
+  let leaderboard = [];
+
+  if (event === "event1") leaderboard = [...event1];
+  if (event === "overall") leaderboard = [...overall];
+
+  const leaderboardFiltred = leaderboard
     .filter((player) => player.category === category)
     .map((player) => {
       return {
@@ -39,10 +44,6 @@ export function Leaderboard() {
     })
     .sort((a, b) => (a.rank < b.rank ? -1 : 1));
 
-  function formatName(fullName: string, alias: string) {
-    return fullName + " (" + alias + ")";
-  }
-
   function formatPosition(position) {
     if (position === 0) return "🥇";
     if (position === 1) return "🥈";
@@ -51,17 +52,9 @@ export function Leaderboard() {
   }
 
   return (
-    <VStack
-      align="stretch"
-      my={6}
-      maxWidth={900}
-      mx="auto"
-      bg="gray.800"
-      borderRadius={8}
-      spacing={2}
-    >
-      <Box>
-        <VStack spacing={4} p={8}>
+    <VStack align="stretch" my={6} maxWidth={900} mx="auto" spacing={4}>
+      <Box bg="gray.800" borderRadius={8}>
+        <VStack spacing={6} p={8}>
           <Box>
             <Avatar size="2xl" src={team12Logo.src} />
           </Box>
@@ -94,10 +87,23 @@ export function Leaderboard() {
               </Button>
             </Stack>
           </Box>
+
+          <Box w={["100%", "80%"]}>
+            <Select
+              bg="whiteAlpha.100"
+              value={event}
+              onChange={(e) => {
+                setEvent(e.target.value);
+              }}
+            >
+              <option value="overall">Overall</option>
+              <option value="event1">Event 1 (08/08)</option>
+            </Select>
+          </Box>
         </VStack>
       </Box>
 
-      <Box px={2}>
+      <Box px={2} bg="gray.800" borderRadius={8}>
         <Table colorScheme="whiteAlpha">
           <Thead>
             <Tr>
@@ -111,7 +117,7 @@ export function Leaderboard() {
             </Tr>
           </Thead>
           <Tbody>
-            {playersFiltred.map((player, position) => {
+            {leaderboardFiltred.map((player, position) => {
               return (
                 <Tr>
                   <Td textAlign={"center"} px={4}>
