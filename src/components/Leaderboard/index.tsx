@@ -4,7 +4,6 @@ import {
   Avatar,
   Box,
   Button,
-  Flex,
   Select,
   Stack,
   Table,
@@ -14,25 +13,21 @@ import {
   Th,
   Thead,
   Tr,
-  useBreakpointValue,
   VStack,
 } from "@chakra-ui/react";
 
 import team12Logo from "../../assets/team12.jpeg";
 
-import { overall } from "../../data/leaderboard-overall";
 import { event1 } from "../../data/leaderboard-event1";
 
 export function Leaderboard() {
   const [category, setCategory] = useState("rx");
   const [event, setEvent] = useState("overall");
 
-  console.log(event);
-
   let leaderboard = [];
 
   if (event === "event1") leaderboard = [...event1];
-  if (event === "overall") leaderboard = [...overall];
+  if (event === "overall") leaderboard = [...event1];
 
   const leaderboardFiltred = leaderboard
     .filter((player) => player.category === category)
@@ -119,7 +114,7 @@ export function Leaderboard() {
           <Tbody>
             {leaderboardFiltred.map((player, position) => {
               return (
-                <Tr>
+                <Tr key={player.name + player.alias}>
                   <Td textAlign={"center"} px={4}>
                     {formatPosition(position)}
                   </Td>

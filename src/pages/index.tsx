@@ -10,9 +10,11 @@ export default function Home() {
       <Flex as="header" h={20} align="center">
         <Logo />
         <Flex align="center" ml="auto">
-          <Button as="a" colorScheme="pink">
-            Contact Us
-          </Button>
+          <Link href="https://www.linkedin.com/in/luanoliveira">
+            <Button as="a" size="sm" colorScheme="pink">
+              Contact Us
+            </Button>
+          </Link>
         </Flex>
       </Flex>
 
