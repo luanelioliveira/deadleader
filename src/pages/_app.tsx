@@ -29,7 +29,6 @@ function App({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
         </SidebarDrawerProvider>
       </ChakraProvider>
-      <Component {...pageProps} />
     </>
   );
 }
