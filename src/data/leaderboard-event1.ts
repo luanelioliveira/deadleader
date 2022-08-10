@@ -1,4 +1,4 @@
-export const event1 = [
+export default [
   { event: 'event1', alias: "Anão", name: "Diego", points: 1, category: "rx", ignore: false },
   { event: 'event1', alias: "AeroXimiti", name: "Guilherme", points: 1, category: "rx", ignore: false },
   { event: 'event1', alias: "Coach", name: "Luiz", points: 2, category: "rx", ignore: false },
@@ -24,7 +24,7 @@ export const event1 = [
   { event: 'event1', alias: "Alves", name: "Djozemara", points: 8, category: "intermediate", ignore: false },
   { event: 'event1', alias: "Kapoti", name: "Bruno", points: 9, category: "intermediate", ignore: false },
   { event: 'event1', alias: "Bebidas", name: "Thiago", points: 10, category: "intermediate", ignore: false },
-  { event: 'event1', alias: "Cardoso", name: "Paula", points: 11, category: "intermediate", ignore: false },
+  { event: 'event1', alias: "Cardoso", name: "Paola", points: 11, category: "intermediate", ignore: false },
   { event: 'event1', alias: "Silva", name: "Sabrina", points: 12, category: "intermediate", ignore: false },
   { event: 'event1', alias: "Metal", name: "Jonathan", points: 13, category: "intermediate", ignore: false },
 ];

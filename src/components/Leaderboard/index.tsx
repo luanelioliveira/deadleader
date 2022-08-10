@@ -18,7 +18,8 @@ import {
 
 import team12Logo from "../../assets/team12.jpeg";
 
-import { event1 } from "../../data/leaderboard-event1";
+import event1 from "../../data/leaderboard-event1";
+import event2 from "../../data/leaderboard-event2";
 
 interface Rank {
   event: string;
@@ -32,55 +33,44 @@ interface Rank {
 const events = [
   { name: "Overall", value: "overall" },
   { name: "Event 1 (08/08)", value: "event1" },
+  { name: "Event 2 (09/08)", value: "event2" },
 ];
 
 export function Leaderboard() {
   const [category, setCategory] = useState("rx");
   const [event, setEvent] = useState("overall");
 
-  let leaderboard = [] as Rank[];
+  let rank = [...event1, ...event2] as Rank[];
 
-  if (event === "event1") leaderboard = [...event1];
+  const rankFiltredByEvent = filterByEventIfIsNotOverall(rank, event);
 
-  if (event === "overall") leaderboard = [...event1];
+  const rankFiltredByCategory = filterByCategory(rankFiltredByEvent, category);
 
-  const leaderboardFiltred = filterByCategory(leaderboard, category);
+  const rankCalculated = calculatePoints(rankFiltredByCategory, event);
 
-  const leaderBoardCalculated = calculatePoints(leaderboardFiltred, event);
+  const rankOrdered = orderByPoints(rankCalculated);
 
-  const leaderBoardOrdered = orderByPoints(leaderBoardCalculated);
+  function filterByEventIfIsNotOverall(leaderboard: Rank[], event: string) {
+    if (event !== "overall") {
+      return leaderboard.filter((player) => player.event === event);
+    }
+    return leaderboard;
+  }
 
   function filterByCategory(leaderboard: Rank[], category: string) {
-    const leaderboardFiltred = leaderboard
-      .filter((player) => player.category === category)
-      .map((player) => {
-        return {
-          ...player,
-          rank: player.points,
-        };
-      });
-
-    return leaderboardFiltred;
+    return leaderboard.filter((player) => player.category === category);
   }
 
   function orderByPoints(leaderboard: Rank[]) {
-    const leaderBoardOrdered = leaderboard.sort((a, b) =>
-      a.points < b.points ? -1 : 1
-    );
-
-    return leaderBoardOrdered;
+    return leaderboard.sort((a, b) => (a.points < b.points ? -1 : 1));
   }
 
   function calculatePoints(leaderboard: Rank[], event: string) {
-    if (event !== "overall") {
-      return leaderboard;
-    }
-
     const leaderBoardCalculated = Object.values(
       leaderboard.reduce((prev, next) => {
         const key = next.name + "-" + next.alias;
         if (!prev[key]) {
-          prev[key] = next;
+          prev[key] = { ...next };
         } else {
           prev[key].points += next.points;
         }
@@ -167,22 +157,22 @@ export function Leaderboard() {
             </Tr>
           </Thead>
           <Tbody>
-            {leaderBoardOrdered.map((player, position) => {
+            {rankOrdered.map((rank, position) => {
               return (
-                <Tr key={player.name + player.alias}>
+                <Tr key={rank.name + rank.alias}>
                   <Td textAlign={"center"} px={4}>
                     {formatPosition(position)}
                   </Td>
                   <Td px={4} w="90%">
                     <Box>
-                      <Text fontWeight="bold">{player.alias}</Text>
+                      <Text fontWeight="bold">{rank.alias}</Text>
                       <Text fontSize="small" color="gray.300">
-                        {player.name}
+                        {rank.name}
                       </Text>
                     </Box>
                   </Td>
                   <Td px={4} isNumeric>
-                    {player.points}
+                    {rank.points}
                   </Td>
                 </Tr>
               );
