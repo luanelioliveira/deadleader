@@ -20,6 +20,7 @@ import team12Logo from "../../assets/team12.jpeg";
 
 import event1 from "../../data/leaderboard-event1";
 import event2 from "../../data/leaderboard-event2";
+import event3 from "../../data/leaderboard-event3";
 
 interface Rank {
   event: string;
@@ -34,13 +35,14 @@ const events = [
   { name: "Overall", value: "overall" },
   { name: "Event 1 (08/08)", value: "event1" },
   { name: "Event 2 (09/08)", value: "event2" },
+  { name: "Event 3 (11/08)", value: "event3" },
 ];
 
 export function Leaderboard() {
   const [category, setCategory] = useState("rx");
   const [event, setEvent] = useState("overall");
 
-  let rank = [...event1, ...event2] as Rank[];
+  let rank = [...event1, ...event2, ...event3] as Rank[];
 
   const rankFiltredByEvent = filterByEventIfIsNotOverall(rank, event);
 
