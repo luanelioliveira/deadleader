@@ -1,4 +1,4 @@
-export interface Rank {
+export interface Score {
   workout: string;
   alias: string;
   name: string;

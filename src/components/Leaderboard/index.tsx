@@ -22,9 +22,9 @@ import { RiFlagFill } from "react-icons/ri";
 
 import team12Logo from "../../assets/team12.jpeg";
 
-import ranking from "../../data/ranking";
+import scores from "../../data/scores";
 
-import { Rank } from "../../types/Rank";
+import { Score } from "../../types/Score";
 
 const workouts = [
   { name: "Overall", value: "overall" },
@@ -38,39 +38,41 @@ export function Leaderboard() {
   const [category, setCategory] = useState("rx");
   const [workout, setWorkout] = useState("overall");
 
-  const rankFiltredByWorkout = filterByWorkoutIfIsNotOverall(ranking, workout);
+  const scoresFiltred = filterByWorkoutAndCategory(scores, workout, category);
 
-  const rankFiltredByCategory = filterByCategory(
-    rankFiltredByWorkout,
-    category
-  );
+  const ranking = calculateRanking(scoresFiltred, workout);
 
-  const rankCalculated = calculatePoints(rankFiltredByCategory, workout);
+  const rankingOrdered = orderByPoints(ranking);
 
-  const rankOrdered = orderByPoints(rankCalculated);
+  function filterByWorkoutAndCategory(
+    scores: Score[],
+    workout: string,
+    category: string
+  ) {
+    const scoresFiltred = filterByCategory(scores, category);
 
-  function filterByWorkoutIfIsNotOverall(leaderboard: Rank[], workout: string) {
-    if (workout !== "overall") {
-      return leaderboard.filter((player) => player.workout === workout);
-    }
-    return leaderboard;
-  }
-
-  function filterByCategory(leaderboard: Rank[], category: string) {
-    return leaderboard.filter((player) => player.category === category);
-  }
-
-  function orderByPoints(leaderboard: Rank[]) {
-    return leaderboard.sort((a, b) => (a.points < b.points ? -1 : 1));
-  }
-
-  function calculatePoints(leaderboard: Rank[], workout: string) {
-    if (workout !== "overall") {
-      return [...leaderboard];
+    if (workout === "overall") {
+      return scoresFiltred;
     }
 
-    const leaderBoardCalculated = Object.values(
-      leaderboard.reduce((prev, next) => {
+    return scoresFiltred.filter((score) => score.workout === workout);
+  }
+
+  function filterByCategory(scores: Score[], category: string) {
+    return scores.filter((score) => score.category === category);
+  }
+
+  function orderByPoints(scores: Score[]) {
+    return scores.sort((a, b) => (a.points < b.points ? -1 : 1));
+  }
+
+  function calculateRanking(scores: Score[], workout: string) {
+    if (workout !== "overall") {
+      return scores;
+    }
+
+    const rankingCalculated = Object.values(
+      scores.reduce((prev, next) => {
         const key = next.name + "-" + next.alias;
 
         if (!prev[key]) {
@@ -83,9 +85,9 @@ export function Leaderboard() {
 
         return prev;
       }, [])
-    ) as Rank[];
+    ) as Score[];
 
-    return leaderBoardCalculated;
+    return rankingCalculated;
   }
 
   function formatPosition(position: number) {
@@ -164,22 +166,22 @@ export function Leaderboard() {
             </Tr>
           </Thead>
           <Tbody>
-            {rankOrdered.map((rank, position) => {
+            {rankingOrdered.map((item, position) => {
               return (
-                <Tr key={rank.name + rank.alias}>
+                <Tr key={item.name + item.alias}>
                   <Td textAlign={"center"} px={4}>
                     {formatPosition(position)}
                   </Td>
                   <Td px={4} w="90%">
                     <HStack spacing={4}>
                       <Box>
-                        <Text fontWeight="bold">{rank.alias}</Text>
+                        <Text fontWeight="bold">{item.alias}</Text>
                         <Text fontSize="small" color="gray.300">
-                          {rank.name}
+                          {item.name}
                         </Text>
                       </Box>
                       <Box>
-                        {workout !== "overall" && rank.eliminated && (
+                        {workout !== "overall" && item.eliminated && (
                           <Icon
                             as={RiFlagFill}
                             w={4}
@@ -191,7 +193,7 @@ export function Leaderboard() {
                     </HStack>
                   </Td>
                   <Td px={4} isNumeric>
-                    {rank.points}
+                    {item.points}
                   </Td>
                 </Tr>
               );
