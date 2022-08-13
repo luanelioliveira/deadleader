@@ -4,6 +4,8 @@ import {
   Avatar,
   Box,
   Button,
+  HStack,
+  Icon,
   Select,
   Stack,
   Table,
@@ -15,6 +17,8 @@ import {
   Tr,
   VStack,
 } from "@chakra-ui/react";
+
+import { RiFlagFill } from "react-icons/ri";
 
 import team12Logo from "../../assets/team12.jpeg";
 
@@ -167,12 +171,24 @@ export function Leaderboard() {
                     {formatPosition(position)}
                   </Td>
                   <Td px={4} w="90%">
-                    <Box>
-                      <Text fontWeight="bold">{rank.alias}</Text>
-                      <Text fontSize="small" color="gray.300">
-                        {rank.name}
-                      </Text>
-                    </Box>
+                    <HStack spacing={4}>
+                      <Box>
+                        <Text fontWeight="bold">{rank.alias}</Text>
+                        <Text fontSize="small" color="gray.300">
+                          {rank.name}
+                        </Text>
+                      </Box>
+                      <Box>
+                        {workout !== "overall" && rank.eliminated && (
+                          <Icon
+                            as={RiFlagFill}
+                            w={4}
+                            h={4}
+                            color="purple.500"
+                          />
+                        )}
+                      </Box>
+                    </HStack>
                   </Td>
                   <Td px={4} isNumeric>
                     {rank.points}
