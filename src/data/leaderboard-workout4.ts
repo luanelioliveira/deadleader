@@ -10,7 +10,7 @@ export default [
   { workout: 'workout4', alias: "Frank", name: "Rodrigo", points: 10, category: "rx", eliminated: false },
   { workout: 'workout4', alias: "Moreli", name: "Bruno", points: 7, category: "rx", eliminated: false },
   { workout: 'workout4', alias: "Sagin", name: "Paula", points: 9, category: "rx", eliminated: false },
-  { workout: 'workout4', alias: "Lari", name: "Larissa", points: 12, category: "rx", eliminated: false },
+  { workout: 'workout4', alias: "Lari", name: "Larissa", points: 12, category: "rx", eliminated: true },
   { workout: 'workout4', alias: "Fano", name: "Estafano", points: 11, category: "rx", eliminated: false },
   { workout: 'workout4', alias: "Kapoti", name: "Bruno", points: 1, category: "intermediate", eliminated: false },
   { workout: 'workout4', alias: "Bandeira", name: "Aline", points: 3, category: "intermediate", eliminated: false },
