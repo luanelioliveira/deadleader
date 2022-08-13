@@ -18,43 +18,36 @@ import {
 
 import team12Logo from "../../assets/team12.jpeg";
 
-import event1 from "../../data/leaderboard-event1";
-import event2 from "../../data/leaderboard-event2";
-import event3 from "../../data/leaderboard-event3";
+import ranking from "../../data/ranking";
 
-interface Rank {
-  event: string;
-  alias: string;
-  name: string;
-  points: number;
-  category: string;
-  ignore: boolean;
-}
+import { Rank } from "../../types/Rank";
 
-const events = [
+const workouts = [
   { name: "Overall", value: "overall" },
-  { name: "Event 1 (08/08)", value: "event1" },
-  { name: "Event 2 (09/08)", value: "event2" },
-  { name: "Event 3 (11/08)", value: "event3" },
+  { name: "Workout 1 (08/08)", value: "workout1" },
+  { name: "Workout 2 (09/08)", value: "workout2" },
+  { name: "Workout 3 (11/08)", value: "workout3" },
+  { name: "Workout 4 (12/08)", value: "workout4" },
 ];
 
 export function Leaderboard() {
   const [category, setCategory] = useState("rx");
-  const [event, setEvent] = useState("overall");
+  const [workout, setWorkout] = useState("overall");
 
-  let rank = [...event1, ...event2, ...event3] as Rank[];
+  const rankFiltredByWorkout = filterByWorkoutIfIsNotOverall(ranking, workout);
 
-  const rankFiltredByEvent = filterByEventIfIsNotOverall(rank, event);
+  const rankFiltredByCategory = filterByCategory(
+    rankFiltredByWorkout,
+    category
+  );
 
-  const rankFiltredByCategory = filterByCategory(rankFiltredByEvent, category);
-
-  const rankCalculated = calculatePoints(rankFiltredByCategory, event);
+  const rankCalculated = calculatePoints(rankFiltredByCategory, workout);
 
   const rankOrdered = orderByPoints(rankCalculated);
 
-  function filterByEventIfIsNotOverall(leaderboard: Rank[], event: string) {
-    if (event !== "overall") {
-      return leaderboard.filter((player) => player.event === event);
+  function filterByWorkoutIfIsNotOverall(leaderboard: Rank[], workout: string) {
+    if (workout !== "overall") {
+      return leaderboard.filter((player) => player.workout === workout);
     }
     return leaderboard;
   }
@@ -67,15 +60,23 @@ export function Leaderboard() {
     return leaderboard.sort((a, b) => (a.points < b.points ? -1 : 1));
   }
 
-  function calculatePoints(leaderboard: Rank[], event: string) {
+  function calculatePoints(leaderboard: Rank[], workout: string) {
+    if (workout !== "overall") {
+      return [...leaderboard];
+    }
+
     const leaderBoardCalculated = Object.values(
       leaderboard.reduce((prev, next) => {
         const key = next.name + "-" + next.alias;
+
         if (!prev[key]) {
-          prev[key] = { ...next };
-        } else {
-          prev[key].points += next.points;
+          prev[key] = { ...next, points: 0 };
         }
+
+        if (!next.eliminated) {
+          prev[key].points = prev[key].points + next.points;
+        }
+
         return prev;
       }, [])
     ) as Rank[];
@@ -130,14 +131,14 @@ export function Leaderboard() {
           <Box w={["100%", "80%"]}>
             <Select
               bg="whiteAlpha.100"
-              value={event}
+              value={workout}
               onChange={(e) => {
-                setEvent(e.target.value);
+                setWorkout(e.target.value);
               }}
             >
-              {events.map((event) => (
-                <option key={event.value} value={event.value}>
-                  {event.name}
+              {workouts.map((workout) => (
+                <option key={workout.value} value={workout.value}>
+                  {workout.name}
                 </option>
               ))}
             </Select>
