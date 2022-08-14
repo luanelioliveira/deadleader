@@ -8,18 +8,18 @@ function orderByPoints(scores: Score[]) {
 
 function calculateScores(scores: Score[]) {
   const scoresCalculated = Object.values(
-    scores.reduce((prev, next) => {
-      const key = next.name + "-" + next.alias;
+    scores.reduce((previous, current) => {
+      const key = current.name + "-" + current.alias;
 
-      if (!prev[key]) {
-        prev[key] = { ...next, points: 0 };
+      if (!previous[key]) {
+        previous[key] = { ...current, points: 0, eliminated: false };
       }
 
-      if (!next.eliminated) {
-        prev[key].points = prev[key].points + next.points;
+      if (!current.eliminated) {
+        previous[key].points = previous[key].points + current.points;
       }
 
-      return prev;
+      return previous;
     }, [])
   ) as Score[];
 

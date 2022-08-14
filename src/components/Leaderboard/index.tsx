@@ -68,7 +68,7 @@ export function Leaderboard() {
         onChangeWorkout={handleChangeWorkout}
       />
 
-      <RankingList isOverall={isOverall()} scores={scores} />
+      <RankingList scores={scores} />
     </VStack>
   );
 }

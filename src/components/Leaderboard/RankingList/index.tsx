@@ -18,11 +18,10 @@ import { RiFlagFill } from "react-icons/ri";
 import { Score } from "../../../types/Score";
 
 interface RankingProps {
-  isOverall: boolean;
   scores: Score[];
 }
 
-export function RankingList({ isOverall = false, scores }: RankingProps) {
+export function RankingList({ scores }: RankingProps) {
   function formatPosition(position: number) {
     if (position === 0) return "🥇";
     if (position === 1) return "🥈";
@@ -60,7 +59,7 @@ export function RankingList({ isOverall = false, scores }: RankingProps) {
                       </Text>
                     </Box>
                     <Box>
-                      {!isOverall && item.eliminated && (
+                      {item.eliminated && (
                         <Icon as={RiFlagFill} w={4} h={4} color="purple.500" />
                       )}
                     </Box>
