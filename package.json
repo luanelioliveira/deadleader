@@ -6,14 +6,14 @@
     "build": "next build",
     "start": "next start",
     "type-check": "tsc",
-    "lint": "eslint . --ext .ts --ext .tsx --js",
-    "lint:fix": "eslint . --ext .ts --ext .tsx --js --fix",
-    "prepare": "husky install",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "postinstall": "husky install",
     "check-types": "tsc --pretty --noEmit",
     "check-format": "prettier --check .",
-    "check-lint": "eslint . --ext ts --ext tsx --ext js",
-    "format": "prettier --write .",
-    "test-all": "npm run check-format && npm run check-lint && npm run check-types && npm run build"
+    "check-lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "format": "prettier \"src/**/*.{js,jsx,ts,tsx,css,scss}\" --write",
+    "check-all": "npm run check-format && npm run check-lint && npm run check-types && npm run build"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.2.4",
