@@ -1,19 +1,16 @@
 import {
-  Box,
   Button,
   Flex,
   Icon,
   IconButton,
   useBreakpointValue,
-} from "@chakra-ui/react";
-import { useSideBarDrawer } from "../../contexts/SidebarDrawerContext";
-import { RiMenuLine } from "react-icons/ri";
+} from '@chakra-ui/react';
+import { useSideBarDrawer } from '../../contexts/SidebarDrawerContext';
+import { RiMenuLine } from 'react-icons/ri';
 
-import { Logo } from "./Logo";
-import { NotifiticationNav } from "./NotificationNav";
-import { Profile } from "./Profile";
-import { SearchBox } from "./SearchBox";
-import { Sidebar } from "../Sidebar";
+import { Logo } from './Logo';
+import { NotifiticationNav } from './NotificationNav';
+import { Profile } from './Profile';
 
 export function Header() {
   const { onOpen } = useSideBarDrawer();

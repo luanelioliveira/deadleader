@@ -1,14 +1,16 @@
-import Script from "next/script";
-import { GA_TRACKING_ID } from "../../lib/gtag";
+import Script from 'next/script';
+import { GA_TRACKING_ID } from '../../lib/gtag';
 
 export default function Analytics() {
   return (
     <>
       <Script
+        id="script-gtag-request"
         strategy="afterInteractive"
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
       />
       <Script
+        id="script-gtag-function"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `

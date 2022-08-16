@@ -1,4 +1,4 @@
-import logo from "../assets/team12.jpeg";
+import logo from '../assets/team12.jpeg';
 
 export default [
   {
@@ -10,11 +10,11 @@ export default [
       { id: 'intermediate', name: 'Intermediate' },
     ],
     workouts: [
-      { id: "overall", name: "Overall" },
-      { id: "workout1", name: "Workout 1 (08/08)" },
-      { id: "workout2", name: "Workout 2 (09/08)" },
-      { id: "workout3", name: "Workout 3 (11/08)" },
-      { id: "workout4", name: "Workout 4 (12/08)" },
-    ]
+      { id: 'overall', name: 'Overall' },
+      { id: 'workout1', name: 'Workout 1 (08/08)' },
+      { id: 'workout2', name: 'Workout 2 (09/08)' },
+      { id: 'workout3', name: 'Workout 3 (11/08)' },
+      { id: 'workout4', name: 'Workout 4 (12/08)' },
+    ],
   },
 ];

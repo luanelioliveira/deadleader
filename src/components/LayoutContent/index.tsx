@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
-import { Box, Flex } from "@chakra-ui/react";
-import { Sidebar } from "../Sidebar";
+import { ReactNode } from 'react';
+import { Box, Flex } from '@chakra-ui/react';
+import { Sidebar } from '../Sidebar';
 
 interface LayoutContentProps {
   children: ReactNode;

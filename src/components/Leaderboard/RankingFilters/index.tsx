@@ -1,4 +1,4 @@
-import { Box, Button, Select, Stack, VStack } from "@chakra-ui/react";
+import { Box, Button, Select, Stack, VStack } from '@chakra-ui/react';
 
 export function RankingFilters({
   workouts,
@@ -17,7 +17,7 @@ export function RankingFilters({
               <Button
                 key={category.id}
                 colorScheme="purple"
-                variant={categorySelected === category.id ? "solid" : "outline"}
+                variant={categorySelected === category.id ? 'solid' : 'outline'}
                 onClick={() => {
                   onChangeCategory(category.id);
                 }}
@@ -29,7 +29,7 @@ export function RankingFilters({
         </Stack>
       </Box>
 
-      <Box w={["80%", "60%"]}>
+      <Box w={['80%', '60%']}>
         <Select
           bg="whiteAlpha.100"
           value={workoutSelected}

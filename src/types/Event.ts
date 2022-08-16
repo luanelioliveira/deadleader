@@ -1,5 +1,5 @@
-import { Category } from "./Category";
-import { Workout } from "./Workout";
+import { Category } from './Category';
+import { Workout } from './Workout';
 
 export interface Event {
   id: string;

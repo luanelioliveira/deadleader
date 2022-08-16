@@ -1,6 +1,5 @@
-import scores from "../data/scores";
-import { Score } from "../types/Score";
-
+import scores from '../data/scores';
+import { Score } from '../types/Score';
 
 function orderByPoints(scores: Score[]) {
   return scores.sort((a, b) => (a.points < b.points ? -1 : 1));
@@ -9,7 +8,7 @@ function orderByPoints(scores: Score[]) {
 function calculateScores(scores: Score[]) {
   const scoresCalculated = Object.values(
     scores.reduce((previous, current) => {
-      const key = current.name + "-" + current.alias;
+      const key = current.name + '-' + current.alias;
 
       if (!previous[key]) {
         previous[key] = { ...current, points: 0, eliminated: false };
@@ -20,14 +19,19 @@ function calculateScores(scores: Score[]) {
       }
 
       return previous;
-    }, [])
+    }, []),
   ) as Score[];
 
   return scoresCalculated;
 }
 
-export async function getScoresByWorkoutAndCategory(workout: string, category: string) {
-  const scoresFiltered = scores.filter((score) => score.workout === workout && score.category === category);
+export async function getScoresByWorkoutAndCategory(
+  workout: string,
+  category: string,
+) {
+  const scoresFiltered = scores.filter(
+    (score) => score.workout === workout && score.category === category,
+  );
   const scoresOrdered = orderByPoints(scoresFiltered);
   return scoresOrdered;
 }
@@ -38,4 +42,3 @@ export async function getOverallScoresByCategory(category: string) {
   const scoresOrdered = orderByPoints(scoresCalculated);
   return scoresOrdered;
 }
-

@@ -1,8 +1,8 @@
-import { Stack } from "@chakra-ui/react";
-import { RiDashboardLine, RiPhoneFill } from "react-icons/ri";
+import { Stack } from '@chakra-ui/react';
+import { RiDashboardLine, RiPhoneFill } from 'react-icons/ri';
 
-import { NavLink } from "./NavLink";
-import { NavSection } from "./NavSection";
+import { NavLink } from './NavLink';
+import { NavSection } from './NavSection';
 
 export function SidebarNav() {
   return (

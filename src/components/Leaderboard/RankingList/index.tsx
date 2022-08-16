@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import {
   Box,
   HStack,
@@ -11,11 +9,11 @@ import {
   Th,
   Thead,
   Tr,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
-import { RiFlagFill } from "react-icons/ri";
+import { RiFlagFill } from 'react-icons/ri';
 
-import { Score } from "../../../types/Score";
+import { Score } from '../../../types/Score';
 
 interface RankingProps {
   scores: Score[];
@@ -23,9 +21,9 @@ interface RankingProps {
 
 export function RankingList({ scores }: RankingProps) {
   function formatPosition(position: number) {
-    if (position === 0) return "🥇";
-    if (position === 1) return "🥈";
-    if (position === 2) return "🥉";
+    if (position === 0) return '🥇';
+    if (position === 1) return '🥈';
+    if (position === 2) return '🥉';
     return position + 1;
   }
 
@@ -34,7 +32,7 @@ export function RankingList({ scores }: RankingProps) {
       <Table colorScheme="whiteAlpha">
         <Thead>
           <Tr>
-            <Th textAlign={"center"} px={4}>
+            <Th textAlign={'center'} px={4}>
               #
             </Th>
             <Th px={4} w="90%">
@@ -47,7 +45,7 @@ export function RankingList({ scores }: RankingProps) {
           {scores.map((item, position) => {
             return (
               <Tr key={item.name + item.alias}>
-                <Td textAlign={"center"} px={4}>
+                <Td textAlign={'center'} px={4}>
                   {formatPosition(position)}
                 </Td>
                 <Td px={4} w="90%">

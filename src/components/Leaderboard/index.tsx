@@ -1,23 +1,23 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import { VStack } from "@chakra-ui/react";
+import { VStack } from '@chakra-ui/react';
 
-import { RankingHeader } from "./RankingHeader";
-import { RankingList } from "./RankingList";
-import { Score } from "../../types/Score";
+import { RankingHeader } from './RankingHeader';
+import { RankingList } from './RankingList';
+import { Score } from '../../types/Score';
 
-import { getEventById } from "../../services/events";
+import { getEventById } from '../../services/events';
 import {
   getOverallScoresByCategory,
   getScoresByWorkoutAndCategory,
-} from "../../services/scores";
+} from '../../services/scores';
 
-import { Event } from "../../types/Event";
-import { RankingFilters } from "./RankingFilters";
+import { Event } from '../../types/Event';
+import { RankingFilters } from './RankingFilters';
 
 export function Leaderboard() {
-  const [category, setCategory] = useState("rx");
-  const [workout, setWorkout] = useState("overall");
+  const [category, setCategory] = useState('rx');
+  const [workout, setWorkout] = useState('overall');
 
   const [event, setEvent] = useState({} as Event);
   const [scores, setScores] = useState<Score[]>([]);
@@ -27,24 +27,24 @@ export function Leaderboard() {
   }, []);
 
   useEffect(() => {
+    function isOverall() {
+      return workout === 'overall';
+    }
+
+    async function getScores() {
+      const allScores = isOverall()
+        ? await getOverallScoresByCategory(category)
+        : await getScoresByWorkoutAndCategory(workout, category);
+
+      setScores(allScores);
+    }
+
     getScores();
-  }, [workout, category]);
+  }, [category, workout]);
 
   async function getEvent() {
-    const event = await getEventById("5faa6a2b-fde9-462a-851e-d0d371a8efa8");
+    const event = await getEventById('5faa6a2b-fde9-462a-851e-d0d371a8efa8');
     setEvent(event);
-  }
-
-  async function getScores() {
-    const allScores = isOverall()
-      ? await getOverallScoresByCategory(category)
-      : await getScoresByWorkoutAndCategory(workout, category);
-
-    setScores(allScores);
-  }
-
-  function isOverall() {
-    return workout === "overall";
   }
 
   function handleChangeCategory(category: string) {

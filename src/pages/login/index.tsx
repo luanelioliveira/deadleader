@@ -1,8 +1,8 @@
-import { Box, Button, Flex, Icon, Text, VStack } from "@chakra-ui/react";
-import { Input } from "../../components/Form/Input";
+import { Box, Button, Flex, Icon, Text, VStack } from '@chakra-ui/react';
+import { Input } from '../../components/Form/Input';
 
-import { RiLogoutBoxRLine } from "react-icons/ri";
-import { Logo } from "../../components/Header/Logo";
+import { RiLogoutBoxRLine } from 'react-icons/ri';
+import { Logo } from '../../components/Header/Logo';
 
 export default function Login() {
   return (

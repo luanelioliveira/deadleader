@@ -1,46 +1,43 @@
-import { theme } from "@chakra-ui/react";
+import { theme } from '@chakra-ui/react';
 
-import { Props as ApexOptionsProps } from 'react-apexcharts'
-import { ChartBox } from "../ChartBox";
+import { Props as ApexOptionsProps } from 'react-apexcharts';
+import { ChartBox } from '../ChartBox';
 
 interface ChartDateTimeProps {
-  title: string
-  categories: string[]
-  data: any[]
+  title: string;
+  categories: string[];
+  data: any[];
 }
 
-
-
-export function ChartDateTime({title, categories, data}: ChartDateTimeProps) {
-  
+export function ChartDateTime({ title, categories, data }: ChartDateTimeProps) {
   const options: ApexOptionsProps = {
     chart: {
       toolbar: {
-        show: false
+        show: false,
       },
       zoom: {
-        enabled: false
+        enabled: false,
       },
-      foreColor: theme.colors.gray[500]
+      foreColor: theme.colors.gray[500],
     },
     grid: {
-      show: false
+      show: false,
     },
     dataLabels: {
-      enabled: false
+      enabled: false,
     },
     tooltip: {
-      enabled: false
+      enabled: false,
     },
     xaxis: {
       type: 'datetime',
       axisBorder: {
-        color: theme.colors.gray[600]
+        color: theme.colors.gray[600],
       },
       axisTicks: {
-        color: theme.colors.gray[600]
+        color: theme.colors.gray[600],
       },
-      categories: categories
+      categories: categories,
     },
     fill: {
       opacity: 0.3,
@@ -48,16 +45,12 @@ export function ChartDateTime({title, categories, data}: ChartDateTimeProps) {
       gradient: {
         shade: 'dark',
         opacity: 0.7,
-        opacityTo: 0.3
-      }
-    }
-  }
+        opacityTo: 0.3,
+      },
+    },
+  };
 
-  const series = [
-    { name: 'series1', data }
-  ]
+  const series = [{ name: 'series1', data }];
 
-  return (
-    <ChartBox title={title} options={options} series={series} />
-  );
+  return <ChartBox title={title} options={options} series={series} />;
 }

@@ -1,6 +1,4 @@
-import { useState } from "react";
-
-import { Avatar, Box, Text, VStack } from "@chakra-ui/react";
+import { Avatar, Box, Text, VStack } from '@chakra-ui/react';
 
 export function RankingHeader({ title, logo }) {
   return (
